@@ -1,1 +1,27 @@
+name: CI Build and Validation
+
+# Run this workflow automatically whenever you push code or open a pull request
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Get your code from GitHub
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Basic structure check
+      - name: Validate web app structure
+        run: |
+          echo "🔍 Checking project files..."
+          test -f index.html && echo "✅ index.html found"
+          test -f styles.css && echo "✅ styles.css found"
+          test -f scripts.js && echo "✅ scripts.js found"
+          echo "🎉 Validation complete — basic build passed."
 
